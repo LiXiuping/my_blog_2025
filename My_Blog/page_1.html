@@ -1,0 +1,1354 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电视剧营销活动设计 | 极简博客</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FCFAF7',
+                            100: '#F8F4EE',
+                            200: '#F1EBE2',
+                            300: '#E6DFD3',
+                        },
+                        accent: {
+                            brown: '#8B7D6B',
+                            green: '#7A9E7E',
+                            blue: '#86A789'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'Cambria', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .content-visibility-auto {
+                content-visibility: auto;
+            }
+            .text-stroke {
+                -webkit-text-stroke: 1px theme('colors.accent.brown');
+                color: transparent;
+            }
+            .diffuse-light {
+                position: fixed;
+                pointer-events: none;
+                border-radius: 50%;
+                filter: blur(100px);
+                opacity: 0.2;
+                z-index: 0;
+            }
+            .preview-container {
+    width: 500px; /* 固定预览窗口宽度 */
+    height: 890px;
+    overflow: auto; /* 允许滚动查看完整内容 */
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+            }
+
+/* 添加缩放容器 */
+.preview-scaler {
+    width: 750px; /* 原始页面宽度 */
+    transform-origin: top left; /* 从左上角开始缩放 */
+    transform: scale(0.6); /* 450/750 = 0.6 */
+}
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-gray-800 font-sans relative overflow-x-hidden">
+    <!-- 弥散光效果层 -->
+    <div id="diffuse-light" class="diffuse-light bg-accent-blue w-[600px] h-[600px]"></div>
+    
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-cream-100/90 backdrop-blur-sm z-50 border-b border-cream-300 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 py-6 flex justify-between items-center">
+            <a href="#" class="text-accent-brown font-medium tracking-wide">Design Journal</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-sm text-gray-600 hover:text-accent-green transition-colors">概览</a>
+                <a href="#process" class="text-sm text-gray-600 hover:text-accent-green transition-colors">设计过程</a>
+                <a href="#result" class="text-sm text-gray-600 hover:text-accent-green transition-colors">设计结果</a>
+            </nav>
+            <button class="md:hidden text-gray-600">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-3xl mx-auto px-6 sm:px-8 pt-32 pb-24 relative z-10">
+        <!-- 标题区域 -->
+        <div class="mb-20">
+            <p class="text-accent-green text-sm font-medium tracking-wider uppercase mb-4">案例研究</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-6 leading-tight">
+                电视剧随播在线<br>营销活动设计
+            </h1>
+            <div class="flex items-center space-x-4 text-sm text-gray-600">
+                <span>交互设计</span>
+                <span>•</span>
+                <span>H5活动</span>
+                <span>•</span>
+                <span>用户体验</span>
+            </div>
+        </div>
+
+        <!-- 项目概览 -->
+        <section id="overview" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">项目背景</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        接到内容运营业务为电视剧设计随播在线营销活动的需求。产品形式要求为H5活动，计划应用于多个主要电视剧IP，作为一种促进会员卡营收的固定长期产品能力。
+                    </p>
+                    
+                    <div class="bg-cream-50 p-6 rounded-lg border border-cream-300 mb-8">
+                        <h3 class="font-medium mb-4">活动核心内容</h3>
+                        <p class="text-gray-700">
+                            购买封面不同的礼品卡送好友，得积分，截止播出期结束，积分排行前5用户赢得明星签名照。
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-medium mb-3 text-sm uppercase tracking-wider text-gray-500">目标用户</h3>
+                            <p class="text-gray-700">明星粉、剧粉</p>
+                        </div>
+                        <div>
+                            <h3 class="font-medium mb-3 text-sm uppercase tracking-wider text-gray-500">产品基础</h3>
+                            <p class="text-gray-700">有较为健全的收银台产品能力链路可以复用，其他功能/页面需从0开始设计</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 角色分工 -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">角色分工</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <h3 class="font-medium mb-4">交互设计师</h3>
+                    <p class="mb-4 text-gray-700 leading-relaxed">
+                        负责与产品经理合作，以实现业务目标为导向，以用户体验视角，以页面链路图的形式输出完整的交互设计方案（各页面结构/页面元件状态/异常流程），以作为UI设计师、前端工程师的结构层基础。
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        从交互设计专业角度，从用户动机、行为路径、信息层级、数据跟踪四个维度出发，系统化地设计该H5营销活动，从而保证目标用户可以快速理解活动信息，唤醒参与动机，流畅完成操作。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 设计过程 -->
+        <section id="process" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">设计过程</h2>
+                    <div class="hidden md:block sticky top-32">
+                        <nav class="space-y-4 text-sm">
+                            <a href="#goals" class="block text-gray-600 hover:text-accent-green transition-colors">设计目标拆解</a>
+                            <a href="#user-journey" class="block text-gray-600 hover:text-accent-green transition-colors">用户旅程设计</a>
+                            <a href="#information" class="block text-gray-600 hover:text-accent-green transition-colors">信息架构</a>
+                            <a href="#information-modules" class="block text-gray-600 hover:text-accent-green transition-colors">信息模块</a>
+                            <a href="#tracking" class="block text-gray-600 hover:text-accent-green transition-colors">数据跟踪</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="md:col-span-8 space-y-16">
+                    <!-- 设计目标拆解 -->
+                    <div id="goals">
+                        <h3 class="text-lg font-medium mb-6">一、设计目标拆解（SMART原则）</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-medium text-accent-brown mb-2">Specific（具体的）</h4>
+                                <p class="text-gray-700">设计交互方案，通过"送礼品卡→得积分→积分排名→赢签名照"机制，激励用户购买会员卡，并通过分享自然产生剧集的传播。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-accent-brown mb-2">Measurable（可衡量的）</h4>
+                                <p class="text-gray-700">设定关键指标：页面到访人数(UV)、礼品卡购买率(CVR)、人均购买份数(APQ)、TOP 10用户购买份数。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-accent-brown mb-2">Achievable（可实现的）</h4>
+                                <p class="text-gray-700">可以利用明星效应与稀缺奖励驱动用户参与。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-accent-brown mb-2">Relevant（相关的）</h4>
+                                <p class="text-gray-700">与剧集IP强绑定，强化用户对内容的情感连接。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-accent-brown mb-2">Time-bound（有期限的）</h4>
+                                <p class="text-gray-700">ddl按上线时间和各环节倒推（T-n天）</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 用户旅程与行为路径设计 -->
+                    <div id="user-journey">
+                        <h3 class="text-lg font-medium mb-6">二、用户旅程与行为路径设计</h3>
+                        <p class="text-gray-700 mb-6">基于Fogg行为模型：B = MAT（行为=动机+能力+触发）</p>
+                        
+                        <h4 class="font-medium text-accent-brown mb-4">1. 用户角色画像</h4>
+                        <div class="bg-cream-50 p-6 rounded-lg border border-cream-300 mb-8">
+                            <p class="mb-2"><span class="font-medium">核心用户：</span>剧粉、明星粉</p>
+                            <p class="mb-1"><span class="font-medium">行为动机：</span></p>
+                            <ul class="list-disc pl-6 text-gray-700">
+                                <li class="mb-1">内在动机：支持偶像</li>
+                                <li>外在动机：获得明星签名照、排行榜竞争</li>
+                            </ul>
+                        </div>
+                        
+                        <h4 class="font-medium text-accent-brown mb-4">2. 行为路径设计</h4>
+                        <p class="text-gray-700 mb-6">赠送者用户旅程分为5个阶段，每个阶段设计要点不同：</p>
+                        
+                        <div class="space-y-8">
+                            <div class="border-l-2 border-accent-green pl-6 py-1">
+                                <h5 class="font-medium mb-2">阶段1：认知</h5>
+                                <p class="text-gray-700 mb-3">设计要点：</p>
+                                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                    <li>首屏信息必须完整包括"目标-手段-行动点"，以快速建立用户认知</li>
+                                    <li>目标是：获得明星签名照</li>
+                                    <li>手段是：赠送好友礼品卡攒积分，竞争积分排行榜TOP10</li>
+                                    <li>行动点：购买按钮</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-accent-green pl-6 py-1">
+                                <h5 class="font-medium mb-2">阶段2：产生兴趣</h5>
+                                <p class="text-gray-700 mb-3">设计要点：</p>
+                                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                    <li>触发用户的内外动机</li>
+                                    <li>内在动机是：支持偶像</li>
+                                    <li>因此卡片的设计要以明星剧照为核心，并加以视觉美化</li>
+                                    <li>外在动机1是：获得明星签名</li>
+                                    <li>因此明星签名照要突出、明显</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-accent-green pl-6 py-1">
+                                <h5 class="font-medium mb-2">阶段3：参与买赠</h5>
+                                <p class="text-gray-700 mb-3">设计要点：</p>
+                                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                    <li>购买按钮突出</li>
+                                    <li>购买按钮附加标签强化"+积分"的心智</li>
+                                    <li>购买完成后，以明显的赠送按钮引导用户去赠送</li>
+                                    <li>以链接或分享海报（含二维码）的形式，帮助用户快速完成赠送</li>
+                                    <li>赠送时可选祝福语，增加情感链接</li>
+                                    <li>已购礼品卡在独立页面进行管理，活动首页必须含有该页入口</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-accent-green pl-6 py-1">
+                                <h5 class="font-medium mb-2">阶段4：竞争</h5>
+                                <p class="text-gray-700 mb-3">设计要点：</p>
+                                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                    <li>排行榜要包含TOP5之外的部分用户，并明确展示个人积分值</li>
+                                    <li>以倒计时营造竞争的紧迫性</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-accent-green pl-6 py-1">
+                                <h5 class="font-medium mb-2">阶段5：取得结果</h5>
+                                <p class="text-gray-700 mb-3">设计要点：</p>
+                                <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                                    <li>排行榜结榜后的公示期状态</li>
+                                    <li>强化TOP5用户的优胜感</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-cream-50 rounded-lg border border-cream-300">
+                            <h5 class="font-medium mb-2">受赠者行为路径</h5>
+                            <p class="text-gray-700">较赠送者较为简单，即"认知-领取-消费（主要指去看剧）"</p>
+                        </div>
+                    </div>
+
+                    <!-- 信息架构、模块化与信息层级 -->
+                    <div id="information">
+                        <h3 class="text-lg font-medium mb-6">三、信息架构、模块化与信息层级</h3>
+                        <p class="text-gray-700 mb-6">基于用户路径，将整个活动拆解为核心页面和信息模块，并明确各模块的优先级和内容组织方式。</p>
+                        
+                        <h4 class="font-medium text-accent-brown mb-4">1. 核心页面</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">首页（活动主会场）</p>
+                                <p class="text-sm text-gray-600">集成核心功能入口与信息展示，包含奖品展示、卡片展示与购买入口、用户积分排行榜</p>
+                            </div>
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">收银台流程页（复用）</p>
+                                <p class="text-sm text-gray-600">完成支付</p>
+                            </div>
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">赠送流程页</p>
+                                <p class="text-sm text-gray-600">选择赠送方式、填写祝福语、分享链接、下载分享卡海报</p>
+                            </div>
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">我的礼品卡页</p>
+                                <p class="text-sm text-gray-600">管理已购卡、查看赠送记录与领取状态</p>
+                            </div>
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">活动规则页</p>
+                                <p class="text-sm text-gray-600">详细规则说明</p>
+                            </div>
+                            <div class="bg-cream-50 p-4 rounded-lg border border-cream-300">
+                                <p class="font-medium">领取页</p>
+                                <p class="text-sm text-gray-600">查看卡片信息、价值、祝福，领取，去观看</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 信息模块 -->
+                    <div id="information-modules">
+                        <h4 class="font-medium text-accent-brown mb-4">2. 信息模块（以首页为例，从上到下）</h4>
+                        <p class="text-gray-700 mb-4">Miller定律：人类短期记忆能力有限，平均能同时处理约7±2个信息组块</p>
+                        
+                        <div class="bg-cream-50 p-6 rounded-lg border border-cream-300 mb-6">
+                            <p class="font-medium mb-4">首页（活动主会场）</p>
+                            <div class="pl-6 border-l-2 border-accent-brown space-y-6">
+                                <div>
+                                    <p class="font-medium">导航区</p>
+                                    <div class="pl-6 mt-2 space-y-2">
+                                        <p>页面导航栏（关闭、分享）</p>
+                                        <p>重要入口（规则、我的礼品卡）</p>
+                                        <p>活动标题（文案：礼品卡赠好友）</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium">签名照Banner</p>
+                                    <div class="pl-6 mt-2 space-y-2">
+                                        <p>签名照图片</p>
+                                        <p>引导文案："赠卡得积分，上榜TOP5赢签名照！"</p>
+                                        <p>我的排名：积分数值+排名数值</p>
+                                        <p>查看排行榜：查看排行榜按钮（向下锚点）</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium">热门礼品卡</p>
+                                    <div class="pl-6 mt-2 space-y-2">
+                                        <p>区域标题："热门礼品卡"</p>
+                                        <p>卡片信息组（列表）</p>
+                                        <div class="pl-6 mt-1 space-y-1">
+                                            <p>热度排名标签："TOP n"（建议1-5）</p>
+                                            <p>卡面图片</p>
+                                            <p>卡片名称</p>
+                                            <p>销量："x人已领取"</p>
+                                            <p>购卡赠好友按钮（价格、积分值）</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium">全部礼品卡</p>
+                                    <div class="pl-6 mt-2 space-y-2">
+                                        <p>区域标题："全部礼品卡"</p>
+                                        <p>区域副标题："相关礼品卡收入计入《xxx》"</p>
+                                        <p>分类TAB（卡片类型、价格数值）</p>
+                                        <div class="pl-6 mt-1 space-y-1">
+                                            <p>积分值文案："每张xxx卡赠n积分"</p>
+                                            <p>卡片信息组（列表）</p>
+                                            <div class="pl-6 mt-1 space-y-1">
+                                                <p>卡面图片</p>
+                                                <p>卡片名称</p>
+                                                <p>销量："x人已领取"</p>
+                                                <p>购卡赠好友按钮</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium">用户排行榜</p>
+                                    <div class="pl-6 mt-2 space-y-2">
+                                        <p>区域标题"TOP10用户排行榜"</p>
+                                        <p>区域副标题："数据刷新可能延时"</p>
+                                        <p>我的排名：积分数值、排名数值</p>
+                                        <p>倒计时</p>
+                                        <p>获奖规则文案：TOP5获得随机签名照</p>
+                                        <p>用户榜单</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-medium text-accent-brown mb-4">3. 信息优先级</h4>
+                        <div class="overflow-x-auto mb-6">
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="border-b border-cream-300">
+                                        <th class="text-left py-3 px-4 font-medium">优先级</th>
+                                        <th class="text-left py-3 px-4 font-medium">内容</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-cream-300">
+                                        <td class="py-3 px-4 font-medium">P0</td>
+                                        <td class="py-3 px-4 text-gray-700">核心动机与行动触发：活动终极奖励、参与方式、明星形象卡面、主行动按钮</td>
+                                    </tr>
+                                    <tr class="border-b border-cream-300">
+                                        <td class="py-3 px-4 font-medium">P1</td>
+                                        <td class="py-3 px-4 text-gray-700">关键手段、竞争状态：礼品卡内容、积分规则、排行榜实时状态</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-medium">P2</td>
+                                        <td class="py-3 px-4 text-gray-700">辅助信息、支线路径：我的礼品卡、规则说明、分享反馈</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 数据跟踪 -->
+                    <div id="tracking">
+                        <h3 class="text-lg font-medium mb-6">四、数据跟踪</h3>
+                        <p class="text-gray-700 mb-6">为实现可衡量的设计目标，后续需要与产品与数据团队合作，跟进必要的数据指标。</p>
+                        
+                        <h4 class="font-medium text-accent-brown mb-4">数据指导方向：</h4>
+                        <ul class="list-disc pl-6 text-gray-700 space-y-3">
+                            <li>实时监控CVR（购买率）、APQ（人均购买份数），用于活动中期策略调整</li>
+                            <li>分析TOP10用户行为路径，提炼"高价值用户"特征，用于后续活动定向运营</li>
+                            <li>对比不同剧集IP的活动参与度，验证产品能力的可复用性</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 设计结果 - 仅替换预览窗口内容，其他保持不变 -->
+        <section id="result" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">设计结果</h2>
+                    <p class="text-gray-600 hidden md:block">
+                        设计结果为完整交互链路，以下仅展示活动首页核心设计
+                    </p>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="text-gray-700 mb-8 md:hidden">
+                        设计结果为完整交互链路，以下仅展示活动首页核心设计
+                    </p>
+                    
+                    <!-- 设计结果预览 - 添加了滚动功能 -->
+                    <div class="border border-cream-300 rounded-xl overflow-hidden shadow-sm mb-8 bg-white">
+                        <div class="bg-cream-50 px-4 py-3 border-b border-cream-300 flex items-center">
+                            <div class="flex space-x-2 mr-4">
+                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <p class="text-sm text-gray-500">活动首页预览（可滚动查看完整内容）</p>
+                        </div>
+                        <!-- 添加预览容器，支持滚动 -->
+                        <div class="preview-container h-[500px]">
+<div class="preview-scaler">
+                            <div class="p-4">
+                                <!-- 导入的低保真页完整代码 -->
+                                <!DOCTYPE html>
+                                <html lang="zh-CN">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>礼品卡赠好友 - 低保真页</title>
+                                    <style>
+                                        * {
+                                            margin: 0;
+                                            padding: 0;
+                                            box-sizing: border-box;
+                                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                                        }
+
+                                        body {
+                                            background-color: #f5f5f5;
+                                            display: flex;
+                                            justify-content: center;
+                                            padding: 0;
+                                            margin: 0;
+                                        }
+
+                                        .page-container {
+                                            width: 750px;
+                                            min-height: 100vh;
+                                            display: flex;
+                                            flex-direction: column;
+                                        }
+
+                                        /* 行0: 顶部留白区 */
+                                        .row-0 {
+                                            height: 60px;
+                                        }
+
+                                        /* 行1: 规则按钮 + 我的礼品卡按钮 */
+                                        .row-1 {
+                                            height: 32px;
+                                            padding: 40px 0 30px 0;
+                                            display: flex;
+                                            justify-content: center;
+                                            position: relative;
+                                        }
+                                        .row-1 .btn {
+                                            height: 32px;
+                                            padding: 0 24px;
+                                            background-color: #d0d0d0;
+                                            color: #555;
+                                            border-radius: 16px;
+                                            font-size: 16px;
+                                            line-height: 32px;
+                                            text-align: center;
+                                            margin: 0 12px;
+                                        }
+                                        .row-1 .close-btn {
+                                            position: absolute;
+                                            top: 40px;
+                                            right: 20px;
+                                            width: 32px;
+                                            height: 32px;
+                                            background-color: #c0c0c0;
+                                            border-radius: 16px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-weight: bold;
+                                            color: #333;
+                                        }
+
+                                        /* 行2: 主标题 */
+                                        .row-2 {
+                                            height: 48px;
+                                            padding: 30px 0;
+                                            text-align: center;
+                                        }
+                                        .row-2 h1 {
+                                            font-size: 48px;
+                                            font-weight: bold;
+                                            color: #000;
+                                            font-family: "SimHei", "黑体", sans-serif;
+                                        }
+
+                                        /* 行3: 横幅信息banner */
+                                        .row-3 {
+                                            padding: 54px 0 30px 0;
+                                            display: flex;
+                                            justify-content: center;
+                                        }
+                                        .row-3 .banner-card {
+                                            width: 90%;
+                                            height: 84px;
+                                            background-color: rgba(60,60,60,0.8);
+                                            border-radius: 32px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            padding: 0 30px;
+                                            color: white;
+                                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                                        }
+                                        .row-3 .photo {
+                                            width: 40px;
+                                            height: 40px;
+                                            border-radius: 0;
+                                            background-color: #999;
+                                        }
+                                        .row-3 .text-container {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        }
+                                        .row-3 .main-text {
+                                            font-size: 24px;
+                                            font-weight: bold;
+                                        }
+                                        .row-3 .sub-text {
+                                            font-size: 16px;
+                                            margin-top: 4px;
+                                            opacity: 0.9;
+                                        }
+                                        .row-3 .rank-btn {
+                                            height: 40px;
+                                            padding: 0 16px;
+                                            background-color: #aaa;
+                                            border-radius: 20px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            color: white;
+                                            font-weight: bold;
+                                            font-size: 16px;
+                                        }
+
+                                        /* 行4: 热门礼品卡标题 */
+                                        .row-4 {
+                                            height: 36px;
+                                            padding: 40px 0 30px 0;
+                                            text-align: center;
+                                        }
+                                        .row-4 h2 {
+                                            font-size: 32px;
+                                            color: #333;
+                                        }
+
+                                        /* 行5: 热门礼品卡轮播区域 */
+                                        .row-5 {
+                                            height: 600px;
+                                            position: relative;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 40px 0;
+                                        }
+                                        .row-5 .card {
+                                            width: 600px;
+                                            height: 480px;
+                                            background-color: #e0e0e0;
+                                            border-radius: 48px;
+                                            position: relative;
+                                            overflow: hidden;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            padding: 40px 30px;
+                                        }
+                                        .row-5 .top-label {
+                                            position: absolute;
+                                            top: 30px;
+                                            left: 30px;
+                                            background-color: #FFC107;
+                                            color: #333;
+                                            padding: 8px 16px;
+                                            border-radius: 12px;
+                                            font-weight: bold;
+                                            font-size: 16px;
+                                            z-index: 2;
+                                        }
+                                        .row-5 .card-img {
+                                            width: 100%;
+                                            height: 280px;
+                                            background-color: #c8c8c8;
+                                            border-radius: 24px;
+                                            margin-bottom: 24px;
+                                        }
+                                        .row-5 .card-title {
+                                            font-size: 24px;
+                                            font-weight: bold;
+                                            text-align: center;
+                                            margin-bottom: 16px;
+                                            color: #222;
+                                            line-height: 1.4;
+                                        }
+                                        .row-5 .card-subtitle {
+                                            font-size: 16px;
+                                            color: #666;
+                                            margin-bottom: 32px;
+                                        }
+                                        .row-5 .buy-btn {
+                                            width: 280px;
+                                            height: 56px;
+                                            background-color: #666;
+                                            color: white;
+                                            border-radius: 28px;
+                                            font-size: 24px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-weight: bold;
+                                        }
+                                        .row-5 .nav-btn {
+                                            position: absolute;
+                                            top: 50%;
+                                            transform: translateY(-50%);
+                                            width: 56px;
+                                            height: 56px;
+                                            background-color: rgba(255,255,255,0.8);
+                                            border-radius: 28px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 28px;
+                                            font-weight: bold;
+                                            color: #333;
+                                            cursor: pointer;
+                                            z-index: 3;
+                                        }
+                                        .row-5 .nav-btn.prev {
+                                            left: 40px;
+                                        }
+                                        .row-5 .nav-btn.next {
+                                            right: 40px;
+                                        }
+
+                                        /* 行6: 滑动指示器 */
+                                        .row-6 {
+                                            height: 12px;
+                                            padding: 4px 0;
+                                            text-align: center;
+                                        }
+                                        .row-6 .indicators {
+                                            display: flex;
+                                            justify-content: center;
+                                            gap: 12px;
+                                        }
+                                        .row-6 .indicator {
+                                            width: 12px;
+                                            height: 12px;
+                                            border-radius: 50%;
+                                            background-color: #ccc;
+                                        }
+                                        .row-6 .indicator.active {
+                                            background-color: #888;
+                                        }
+
+                                        /* 行7: 所有礼品卡标题 */
+                                        .row-7 {
+                                            height: 36px;
+                                            padding: 40px 0 30px 0;
+                                            text-align: center;
+                                        }
+                                        .row-7 h2 {
+                                            font-size: 32px;
+                                            color: #333;
+                                        }
+
+                                        /* 行8: 分类标签栏 */
+                                        .row-8 {
+                                            height: 80px;
+                                            padding: 54px 0 20px 0;
+                                            display: flex;
+                                            justify-content: center;
+                                        }
+                                        .row-8 .tag-container {
+                                            display: flex;
+                                            gap: 20px;
+                                        }
+                                        .row-8 .tag {
+                                            width: 140px;
+                                            height: 60px;
+                                            background-color: #b0b0b0;
+                                            border-radius: 20px;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 8px 12px;
+                                            cursor: pointer;
+                                        }
+                                        .row-8 .tag.active {
+                                            background-color: #888;
+                                        }
+                                        .row-8 .tag-name {
+                                            font-size: 16px;
+                                            color: #333;
+                                            font-weight: bold;
+                                            margin-bottom: 4px;
+                                        }
+                                        .row-8 .tag-price {
+                                            font-size: 14px;
+                                            color: #666;
+                                        }
+                                        .row-8 .tag.active .tag-name,
+                                        .row-8 .tag.active .tag-price {
+                                            color: white;
+                                        }
+
+                                        /* 行9: 商品列表提示 */
+                                        .row-9 {
+                                            height: 30px;
+                                            padding: 42px 0 40px 0;
+                                            text-align: center;
+                                        }
+                                        .row-9 p {
+                                            font-size: 16px;
+                                            color: #777;
+                                            display: inline-block;
+                                        }
+
+                                        /* 行10: 礼品卡商品网格 */
+                                        .row-10 {
+                                            padding: 24px 40px 50px;
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                            justify-content: space-between;
+                                        }
+                                        .row-10 .card {
+                                            width: calc(50% - 10px);
+                                            height: 220px;
+                                            background-color: #e0e0e0;
+                                            border-radius: 24px;
+                                            padding: 20px;
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                            margin-bottom: 20px;
+                                        }
+                                        .row-10 .card-img {
+                                            width: 120px;
+                                            height: 90px;
+                                            background-color: #c0c0c0;
+                                            border-radius: 12px;
+                                            margin-bottom: 12px;
+                                            position: relative;
+                                            background-size: cover;
+                                            background-position: center;
+                                        }
+                                        .row-10 .card-img .zoom-icon {
+                                            position: absolute;
+                                            bottom: 8px;
+                                            right: 8px;
+                                            width: 20px;
+                                            height: 20px;
+                                            background-color: rgba(255,255,255,0.8);
+                                            border-radius: 50%;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 12px;
+                                            color: #333;
+                                        }
+                                        .row-10 .card-title {
+                                            font-size: 24px;
+                                            font-weight: bold;
+                                            margin-bottom: 8px;
+                                            text-align: center;
+                                            color: #333;
+                                        }
+                                        .row-10 .points {
+                                            font-size: 16px;
+                                            color: #555;
+                                            margin-bottom: 12px;
+                                            text-align: center;
+                                        }
+                                        .row-10 .points .icon {
+                                            display: inline-block;
+                                            width: 16px;
+                                            height: 16px;
+                                            background-color: #FF4081;
+                                            border-radius: 50%;
+                                            margin-right: 4px;
+                                            vertical-align: middle;
+                                        }
+                                        .row-10 .buy-btn {
+                                            width: 160px;
+                                            height: 36px;
+                                            background-color: #777;
+                                            color: white;
+                                            border-radius: 18px;
+                                            font-size: 16px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+
+                                        /* 行11: TOP10用户积分榜标题 */
+                                        .row-11 {
+                                            padding: 30px 0;
+                                            text-align: center;
+                                        }
+                                        .row-11 h2 {
+                                            font-size: 32px;
+                                            color: #333;
+                                        }
+
+                                        /* 行12: 数据刷新可能有延时 */
+                                        .row-12-subtext {
+                                            height: 24px;
+                                            padding: 24px 0;
+                                            text-align: center;
+                                        }
+                                        .row-12-subtext p {
+                                            font-size: 16px;
+                                            color: #777;
+                                        }
+
+                                        /* 行13: 倒计时条 */
+                                        .row-13-countdown {
+                                            height: 40px;
+                                            padding: 24px 0;
+                                            text-align: center;
+                                        }
+                                        .row-13-countdown .countdown {
+                                            width: 90%;
+                                            height: 40px;
+                                            background-color: #D4D4D4;
+                                            color: white;
+                                            border-radius: 20px;
+                                            display: inline-flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                        }
+
+                                        /* 行14: 个人信息栏（资产栏） */
+                                        .row-14-info {
+                                            height: 70px;
+                                            padding: 30px 0 30px 0;
+                                            display: flex;
+                                            justify-content: center;
+                                        }
+                                        .row-14-info .info-card {
+                                            width: 90%;
+                                            height: 50px;
+                                            background-color: #999999;
+                                            border-radius: 24px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 0 20px;
+                                            color: white;
+                                        }
+                                        .row-14-info .avatar {
+                                            width: 40px;
+                                            height: 40px;
+                                            border-radius: 50%;
+                                            background-color: #777;
+                                            margin-right: 24px;
+                                        }
+                                        .row-14-info .info {
+                                            font-size: 16px;
+                                            display: flex;
+                                            align-items: center;
+                                        }
+                                        .row-14-info .icon {
+                                            display: inline-block;
+                                            width: 16px;
+                                            height: 16px;
+                                            border-radius: 50%;
+                                            margin: 0 6px;
+                                            vertical-align: middle;
+                                        }
+                                        .row-14-info .turtle-icon {
+                                            background-color: #FF4081;
+                                        }
+                                        .row-14-info .trophy-icon {
+                                            background-color: #FFC107;
+                                        }
+
+                                        /* 行15: 排行榜前三名展示 - 修复：整体向下移动 42px */
+                                        .row-15 {
+                                            margin-top: 42px; /* ← 关键：整体下移 42px */
+                                            padding: 0 0 40px 0;
+                                            height: 200px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: flex-end;
+                                            gap: 60px;
+                                        }
+                                        .row-15 .rank-item {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        }
+                                        .row-15 .rank-item.no1 {
+                                            margin-top: -20px;
+                                        }
+                                        .row-15 .avatar {
+                                            width: 80px;
+                                            height: 80px;
+                                            border-radius: 50%;
+                                            background-color: #b0b0b0;
+                                            position: relative;
+                                            z-index: 1;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+                                        .row-15 .no1 .avatar {
+                                            width: 110px;
+                                            height: 110px;
+                                        }
+                                        .row-15 .rank-label {
+                                            position: absolute;
+                                            top: -10px;
+                                            left: 50%;
+                                            transform: translateX(-50%);
+                                            background-color: #FFC107;
+                                            color: #333;
+                                            padding: 6px 12px;
+                                            border-radius: 12px;
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            white-space: nowrap;
+                                        }
+                                        .row-15 .nickname {
+                                            font-size: 16px;
+                                            margin-top: 16px;
+                                            color: #333;
+                                        }
+                                        .row-15 .points {
+                                            font-size: 16px;
+                                            color: #666;
+                                        }
+
+                                        /* 行16: 排行榜第4至第10名列表 */
+                                        .row-16 {
+                                            padding: 20px 40px 80px 40px;
+                                        }
+                                        .row-16 .rank-item {
+                                            height: 100px;
+                                            background-color: #e8e8e8;
+                                            border-radius: 24px;
+                                            padding: 20px;
+                                            margin-bottom: 30px;
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 24px;
+                                        }
+                                        .row-16 .rank-label {
+                                            width: 50px;
+                                            height: 32px;
+                                            background-color: #c8c8c8;
+                                            border-radius: 16px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-weight: bold;
+                                            color: #555;
+                                            font-size: 16px;
+                                        }
+                                        .row-16 .avatar {
+                                            width: 56px;
+                                            height: 56px;
+                                            border-radius: 50%;
+                                            background-color: #c0c0c0;
+                                        }
+                                        .row-16 .user-info {
+                                            flex: 1;
+                                        }
+                                        .row-16 .nickname {
+                                            font-size: 24px;
+                                            color: #333;
+                                            margin-bottom: 8px;
+                                        }
+                                        .row-16 .points {
+                                            font-size: 16px;
+                                            color: #666;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <div class="page-container">
+                                        <!-- 行0: 顶部留白区 -->
+                                        <div class="row-0"></div>
+
+                                        <!-- 行1: 规则按钮 + 我的礼品卡按钮 -->
+                                        <div class="row-1">
+                                            <div class="btn">规则</div>
+                                            <div class="btn">我的礼品卡</div>
+                                            <div class="close-btn">✕</div>
+                                        </div>
+
+                                        <!-- 行2: 主标题 -->
+                                        <div class="row-2">
+                                            <h1>礼品卡赠好友</h1>
+                                        </div>
+
+                                        <!-- 行3: 横幅信息banner -->
+                                        <div class="row-3">
+                                            <div class="banner-card">
+                                                <div class="photo"></div>
+                                                <div class="text-container">
+                                                    <div class="main-text">赠卡得积分，上榜赢签名照！</div>
+                                                    <div class="sub-text">我的积分：33333 | 排名：999+</div>
+                                                </div>
+                                                <div class="rank-btn">用户榜</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行4: 热门礼品卡标题 -->
+                                        <div class="row-4">
+                                            <h2>热门礼品卡</h2>
+                                        </div>
+
+                                        <!-- 行5: 热门礼品卡轮播区域 -->
+                                        <div class="row-5">
+                                            <div class="nav-btn prev">‹</div>
+                                            <div class="card">
+                                                <div class="top-label">TOP1</div>
+                                                <div class="card-img"></div>
+                                                <div class="card-title">卡片名称</div>
+                                                <div class="card-subtitle">7000人已领取</div>
+                                                <div class="buy-btn">¥248 购卡送好友</div>
+                                            </div>
+                                            <div class="nav-btn next">›</div>
+                                        </div>
+
+                                        <!-- 行6: 滑动指示器 -->
+                                        <div class="row-6">
+                                            <div class="indicators">
+                                                <div class="indicator active"></div>
+                                                <div class="indicator"></div>
+                                                <div class="indicator"></div>
+                                                <div class="indicator"></div>
+                                                <div class="indicator"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行7: 所有礼品卡标题 -->
+                                        <div class="row-7">
+                                            <h2>所有礼品卡</h2>
+                                        </div>
+
+                                        <!-- 行8: 分类标签栏 -->
+                                        <div class="row-8">
+                                            <div class="tag-container">
+                                                <div class="tag active">
+                                                    <div class="tag-name">VIP月卡</div>
+                                                    <div class="tag-price">¥48元/张</div>
+                                                </div>
+                                                <div class="tag">
+                                                    <div class="tag-name">VIP年卡</div>
+                                                    <div class="tag-price">¥100元/张</div>
+                                                </div>
+                                                <div class="tag">
+                                                    <div class="tag-name">SVIP年卡</div>
+                                                    <div class="tag-price">¥248元/张</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行9: 商品列表提示 -->
+                                        <div class="row-9">
+                                            <p>+248积分/张</p>
+                                        </div>
+
+                                        <!-- 行10: 礼品卡商品网格 -->
+                                        <div class="row-10">
+                                            <div class="card">
+                                                <div class="card-img">
+                                                    <div class="zoom-icon">🔍</div>
+                                                </div>
+                                                <div class="card-title">卡片名称</div>
+                                                <div class="points">+248积分/张</div>
+                                                <div class="buy-btn">购卡送好友</div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-img">
+                                                    <div class="zoom-icon">🔍</div>
+                                                </div>
+                                                <div class="card-title">卡片名称</div>
+                                                <div class="points">+248积分/张</div>
+                                                <div class="buy-btn">购卡送好友</div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-img">
+                                                    <div class="zoom-icon">🔍</div>
+                                                </div>
+                                                <div class="card-title">卡片名称</div>
+                                                <div class="points">+248积分/张</div>
+                                                <div class="buy-btn">购卡送好友</div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-img">
+                                                    <div class="zoom-icon">🔍</div>
+                                                </div>
+                                                <div class="card-title">卡片名称</div>
+                                                <div class="points">+248积分/张</div>
+                                                <div class="buy-btn">购卡送好友</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行11: TOP10用户积分榜标题 -->
+                                        <div class="row-11">
+                                            <h2>TOP10用户积分榜</h2>
+                                        </div>
+
+                                        <!-- 行12: 数据刷新可能有延时 -->
+                                        <div class="row-12-subtext">
+                                            <p>数据刷新可能有延时</p>
+                                        </div>
+
+                                        <!-- 行13: 倒计时条 -->
+                                        <div class="row-13-countdown">
+                                            <div class="countdown">倒计时：11天01时08分56秒</div>
+                                        </div>
+
+                                        <!-- 行14: 个人信息栏（资产栏） -->
+                                        <div class="row-14-info">
+                                            <div class="info-card">
+                                                <div class="avatar"></div>
+                                                <div class="info">
+                                                    <span class="icon turtle-icon"></span>我的积分：33333 | 
+                                                    <span class="icon trophy-icon"></span>我的排名：999+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行15: 排行榜前三名展示 -->
+                                        <div class="row-15">
+                                            <div class="rank-item">
+                                                <div class="avatar">
+                                                    <div class="rank-label">No.2</div>
+                                                </div>
+                                                <div class="nickname">用户昵称1234</div>
+                                                <div class="points">18891</div>
+                                            </div>
+                                            <div class="rank-item no1">
+                                                <div class="avatar">
+                                                    <div class="rank-label">No.1</div>
+                                                </div>
+                                                <div class="nickname">用户昵称1234</div>
+                                                <div class="points">18891</div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="avatar">
+                                                    <div class="rank-label">No.3</div>
+                                                </div>
+                                                <div class="nickname">用户昵称1234</div>
+                                                <div class="points">18891</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 行16: 排行榜第4至第10名列表 -->
+                                        <div class="row-16">
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.4</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.5</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.6</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.7</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.8</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.9</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item">
+                                                <div class="rank-label">No.10</div>
+                                                <div class="avatar"></div>
+                                                <div class="user-info">
+                                                    <div class="nickname">用户昵称1234</div>
+                                                    <div class="points">18891</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </body>
+                                </html>
+                                <!-- 导入的低保真页完整代码结束 -->
+                            </div>
+                        </div>
+                    </div>
+</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 1. 弥散光跟随鼠标效果优化 - 确保始终流畅跟随
+  // 获取弥散光元素
+const diffuseLight = document.getElementById('diffuse-light');
+
+// 监听鼠标移动事件
+document.addEventListener('mousemove', (e) => {
+  // 获取鼠标在视口中的位置
+  const x = e.clientX;
+  const y = e.clientY;
+  
+  // 设置弥散光元素位置（可以添加偏移量使效果更自然）
+  diffuseLight.style.left = `${x - 300}px`;  // 减去宽度的一半使其居中
+  diffuseLight.style.top = `${y - 300}px`;   // 减去高度的一半使其居中
+});
+
+// 针对触摸设备添加支持
+document.addEventListener('touchmove', (e) => {
+  // 防止页面滚动
+  e.preventDefault();
+  const touch = e.touches[0];
+  const x = touch.clientX;
+  const y = touch.clientY;
+  
+  diffuseLight.style.left = `${x - 300}px`;
+  diffuseLight.style.top = `${y - 300}px`;
+}, { passive: false });
+        
+        // 2. 导航锚点定位
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const header = document.querySelector('header');
+                    const headerHeight = header.offsetHeight;
+                    
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 3. 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-3');
+                header.classList.remove('py-6');
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.add('py-6');
+                header.classList.remove('py-3');
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>

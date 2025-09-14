@@ -1,0 +1,160 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李修平 - 交互设计师</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FCFAF7',
+                            100: '#F8F4EE',
+                            200: '#F1EBE2',
+                            300: '#E6DFD3',
+                        },
+                        accent: {
+                            brown: '#8B7D6B',
+                            green: '#7A9E7E',
+                            blue: '#86A789'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'Cambria', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .diffuse-light {
+                position: fixed;
+                pointer-events: none;
+                border-radius: 50%;
+                filter: blur(100px);
+                opacity: 0.2;
+                z-index: 0;
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+            }
+            .avatar-hover {
+                transition: transform 0.5s ease;
+            }
+            .avatar-hover:hover {
+                transform: scale(1.05) rotate(2deg);
+            }
+            .text-hover {
+                transition: color 0.3s ease;
+            }
+            .text-hover:hover {
+                color: #7A9E7E;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-gray-800 font-sans relative overflow-x-hidden">
+    <!-- 静态弥散光效果 -->
+    <div id="diffuse-light" class="diffuse-light bg-accent-blue w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+    
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-cream-100/90 backdrop-blur-sm z-50 border-b border-cream-300 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 py-6 flex justify-between items-center">
+            <a href="#" class="text-accent-brown font-medium tracking-wide">李修平</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#profile" class="text-sm text-gray-600 hover:text-accent-green transition-colors">个人简介</a>
+                <a href="#projects" class="text-sm text-gray-600 hover:text-accent-green transition-colors">项目案例</a>
+            </nav>
+            <button class="md:hidden text-gray-600">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-3xl mx-auto px-6 sm:px-8 pt-40 pb-32 relative z-10">
+        <!-- 个人信息区域 -->
+        <section id="profile" class="mb-32 text-center">
+            <div class="inline-block mb-10 avatar-hover">
+                <img src="head.JPG" alt="李修平头像" class="w-32 h-32 rounded-full object-cover border-4 border-cream-300">
+            </div>
+            
+            <h1 class="text-2xl md:text-3xl font-serif font-light mb-10 text-hover">Hi，我是交互设计师 李修平</h1>
+            
+            <div class="max-w-md mx-auto text-gray-700 text-sm md:text-base leading-relaxed space-y-3">
+                <p>工业设计本科</p>
+                <p>清华大学信息艺术设计系硕士</p>
+                <p>5年大厂交互设计师经验</p>
+                <p>Datawhale Design-with-ai 开源项目贡献者</p>
+                <p>现居北京</p>
+                <p>热爱AI</p>
+            </div>
+        </section>
+
+        <!-- 项目案例区域 -->
+        <section id="projects" class="mb-32">
+            <h2 class="text-3xl font-serif font-light mb-16 text-center text-accent-brown text-hover">项目案例</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- 项目1 -->
+                <a href="page_1.html" class="block">
+                    <div class="bg-white rounded-xl overflow-hidden border border-cream-300 card-hover h-full">
+                        <div class="h-48 bg-cream-100 flex items-center justify-center">
+                            <i class="fa fa-television text-6xl text-accent-brown/30"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-medium mb-3 text-accent-brown">电视剧营销活动设计</h3>
+                            <p class="text-sm text-gray-600">电视剧随播在线营销活动的交互设计方案，包含用户旅程与行为路径规划。</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 项目2 -->
+                <a href="page_2.html" class="block">
+                    <div class="bg-white rounded-xl overflow-hidden border border-cream-300 card-hover h-full">
+                        <div class="h-48 bg-cream-100 flex items-center justify-center">
+                            <i class="fa fa-cogs text-6xl text-accent-brown/30"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-medium mb-3 text-accent-brown">Agentic Workflow搭建</h3>
+                            <p class="text-sm text-gray-600">基于设计系统思路的AI辅助设计工作流探索，优化网页设计生成体验。</p>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- 项目3 -->
+                <a href="https://github.com/datawhalechina/design-with-ai/blob/main/docs/casebook/Video_Production/Text_to_Video_Full_Process_Script_Storyboard_VO_Visuals/Text_to_Video_Full_Process_Script_Storyboard_VO_Visuals.md" target="_blank" class="block">
+                    <div class="bg-white rounded-xl overflow-hidden border border-cream-300 card-hover h-full">
+                        <div class="h-48 bg-cream-100 flex items-center justify-center">
+                            <i class="fa fa-github text-6xl text-accent-brown/30"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-medium mb-3 text-accent-brown">Datawhale Design-with-ai</h3>
+                            <p class="text-sm text-gray-600">开源项目，探索AI辅助设计的方法与实践，提供案例库与工具资源。</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    </script>
+</body>
+</html>
+    

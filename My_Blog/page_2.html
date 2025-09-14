@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Workflow搭建 | 实验与探索</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FCFAF7',
+                            100: '#F8F4EE',
+                            200: '#F1EBE2',
+                            300: '#E6DFD3',
+                        },
+                        accent: {
+                            brown: '#8B7D6B',
+                            green: '#7A9E7E',
+                            blue: '#86A789'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Georgia', 'Cambria', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-balance {
+                text-wrap: balance;
+            }
+            .diffuse-light {
+                position: fixed;
+                pointer-events: none;
+                border-radius: 50%;
+                filter: blur(100px);
+                opacity: 0.2;
+                z-index: 0;
+            }
+            .preview-container {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
+</head>
+<body class="bg-cream-100 text-gray-800 font-sans relative overflow-x-hidden">
+    <!-- 弥散光光效果层 -->
+    <div id="diffuse-light" class="diffuse-light bg-accent-blue w-[600px] h-[600px]"></div>
+    
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-cream-100/90 backdrop-blur-sm z-50 border-b border-cream-300 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-6 sm:px-8 py-6 flex justify-between items-center">
+            <a href="#" class="text-accent-brown font-medium tracking-wide">Design Journal</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-sm text-gray-600 hover:text-accent-green transition-colors">概述</a>
+                <a href="#painpoints" class="text-sm text-gray-600 hover:text-accent-green transition-colors">现状与痛点</a>
+                <a href="#workflow" class="text-sm text-gray-600 hover:text-accent-green transition-colors">工作流设计</a>
+                <a href="#tools" class="text-sm text-gray-600 hover:text-accent-green transition-colors">搭建工具</a>
+                <a href="#design-system" class="text-sm text-gray-600 hover:text-accent-green transition-colors">设计系统</a>
+                <a href="#examples" class="text-sm text-gray-600 hover:text-accent-green transition-colors">示例与链接</a>
+            </nav>
+            <button class="md:hidden text-gray-600">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-3xl mx-auto px-6 sm:px-8 pt-32 pb-24 relative z-10">
+        <!-- 标题区域 -->
+        <div class="mb-20">
+            <p class="text-accent-green text-sm font-medium tracking-wider uppercase mb-4">实验探索</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-light mb-6 leading-tight">
+                基于设计系统思路的<br>Agentic Workflow搭建
+            </h1>
+            <div class="flex items-center space-x-4 text-sm text-gray-600">
+                <span>AI辅助设计</span>
+                <span>•</span>
+                <span>工作流设计</span>
+                <span>•</span>
+                <span>设计系统</span>
+            </div>
+        </div>
+
+        <!-- 项目概述 -->
+        <section id="overview" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">项目概述</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        本实验项目探索了一种Agentic Workflow搭建方案，旨在优化网页设计中的AI辅助生成体验。通过将提示词视为设计系统载体，本方法尝试解决AI生成页面样式受限、编辑性差等问题，提供可导入Figma、具备图层和元素拆分能力的设计初稿。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实验初衷：AI设计现状与痛点 -->
+        <section id="painpoints" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">AI设计现状与痛点</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        目前，多数AI网页生成工具侧重于极简页面，或在样式（如矢量图案填充）方面存在一定局限。另一类图像生成工具虽能控制版式与信息布局，但输出为单张图片，无法拆分图层，这限制了其在网页设计等需要元素精细编辑场景中的应用。
+                    </p>
+                    
+                    <p class="text-gray-700 leading-relaxed">
+                        因此，在需要强视觉表现力的页面设计场景，个人认为行业内仍缺少一些能兼顾视觉包装与可编辑性的产品方案。本项目即是对此方向的一次实验性探索。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agentic Workflow：将提示词作为设计系统载体 -->
+        <section id="workflow" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">工作流设计</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        以3D风格卡片式活动页为例，本实验提供了一种工作流思路：将提示词视为一种设计系统的载体。在特定设计场景中，一个大模型负责按设计需求、内置设计系统提示词，分别拆解出针对代码类元素（如卡片、按钮）和图像类元素（如图标、艺术字）的约束规范。
+                    </p>
+                    
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        然后，这些规范分配给下游的大模型与相关工具节点，分别执行不同生成过程：
+                    </p>
+                    
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6">
+                        <li>代码生成：遵守约束规范，进行HTML网页生成。</li>
+                        <li>图像生成：根据HTML上下文，遵守约束规范，批量生成图像类的提示词，并驱动生图工具生成图片，同时完成主体抠图。</li>
+                    </ul>
+                    
+                    <p class="text-gray-700 leading-relaxed">
+                        最终，所有结果输入大模型中整合为一个HTML文件。该文件可以导入Figma等专业设计软件，得到信息布局合理、有图层、元素拆分的设计初稿。这旨在保证设计师可以进一步编辑，或添加自己的素材。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 搭建工具：Coze平台实践 -->
+        <section id="tools" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">搭建工具</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        本项目基于Coze开发平台搭建，主要节点包括：
+                    </p>
+                    
+                    <ul class="list-disc pl-6 text-gray-700 space-y-3">
+                        <li>豆包·1.6·自动深度思考：用于处理复杂的逻辑拆解与任务调度。</li>
+                        <li>豆包·1.5·Pro·视觉推理：辅助理解视觉上下文和图像内容。</li>
+                        <li>Seedream生图节点：执行图像生成任务。</li>
+                        <li>代码节点：负责HTML代码的生成与整合。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 设计系统内容（内置提示词解析） -->
+        <section id="design-system" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">设计系统</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="mb-6 text-gray-700 leading-relaxed">
+                        本项目中，设计系统主要通过内置提示词体现，其内容包括：
+                    </p>
+                    
+                    <ul class="list-disc pl-6 text-gray-700 space-y-3">
+                        <li>主题语境与双色配色（Hex色号）：这将对图像元素（图标/艺术字）的约束规范（本质上是材质搭配列表）定义起到关键作用。
+                            <ul class="list-circle pl-6 mt-1">
+                                <li>颜色直接影响材质的视觉表现（例如，哑光红与亮面红的效果截然不同）。</li>
+                                <li>双色关系（对比或和谐）可能需要通过材质的差异或统一来强化或柔化。</li>
+                            </ul>
+                        </li>
+                        <li>字体：由主题语境决定，并在造型上受固定内置提示词的约束，旨在提高造型细节质量。</li>
+                        <li>字号/圆角/间距：由按照层级关系定义的梯度值决定。这段提示词目前采用固定形式，但未来可考虑开放给用户输入。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 导出Figma示例与体验链接 -->
+        <section id="examples" class="mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                    <h2 class="text-xl font-medium mb-6 text-accent-brown">示例与链接</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <div class="mb-8">
+                        <h3 class="text-lg font-medium mb-4">导出Figma示例</h3>
+                        <a href="https://www.figma.com/design/DGkBux5KHabNuWodgERDyh/Untitled?node-id=0-1&t=fp5er7NAtKpwHVOo-1" target="_blank" class="inline-flex items-center text-accent-green hover:underline">
+                            https://www.figma.com/design/DGkBux5KHabNuWodgERDyh/Untitled?node-id=0-1&t=fp5er7NAtKpwHVOo-1 <i class="fa fa-external-link ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">体验链接</h3>
+                        <a href="https://www.coze.cn/store/agent/7538298974328061978?bot_id=true" target="_blank" class="inline-flex items-center text-accent-green hover:underline">
+                            https://www.coze.cn/store/agent/7538298974328061978?bot_id=true <i class="fa fa-external-link ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 弥散光光跟随鼠标效果
+        const diffuseLight = document.getElementById('diffuse-light');
+        const body = document.body;
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let isAnimating = false;
+        
+        function updateLightPosition() {
+            const lightX = mouseX - 300;
+            const lightY = mouseY - 300;
+            
+            const hue = (mouseX / window.innerWidth) * 60 + 120;
+            diffuseLight.style.backgroundColor = `hsl(${hue}, 30%, 60%)`;
+            diffuseLight.style.transform = `translate(${lightX}px, ${lightY}px)`;
+            const opacity = 0.1 + (mouseY / window.innerHeight) * 0.2;
+            diffuseLight.style.opacity = opacity;
+            
+            isAnimating = false;
+        }
+        
+        body.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            if (!isAnimating) {
+                requestAnimationFrame(updateLightPosition);
+                isAnimating = true;
+            }
+        });
+        
+        updateLightPosition();
+        
+        // 导航锚点定位
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const header = document.querySelector('header');
+                    const headerHeight = header.offsetHeight;
+                    
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 滚动时导航栏效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-3');
+                header.classList.remove('py-6');
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.add('py-6');
+                header.classList.remove('py-3');
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body>
+</html>
+    
